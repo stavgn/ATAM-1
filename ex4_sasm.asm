@@ -1,8 +1,15 @@
-.global _start
+.global main
+
+.section .data
+arr: .int 6,4,1,9,10,6,3
+n: .int 7
+begin: .int 0
+len: .int 0
 
 .section .text
-_start:
+main:
 #your code here
+
 
 mov $1,%rcx # counter=1
 mov $1, %rax # max_length=1
@@ -12,14 +19,14 @@ mov $1, %r8 # temp_length=1
 xor %r9, %r9 # temp_begin=0
 
 xor %edx, %edx # prev_value=0
-movl arr,%edx # prev_value=arr[0]
+mov arr,%edx # prev_value=arr[0]
 
 loop:
 cmp %rcx, n
 je end_loop
 
 # if (arr[i]<arr[i-1]){...}
-cmp arr(,%rcx,4), %edx
+cmp arr(,%rcx,4),%edx
 jg keep_counting 
 
 reset_count:
@@ -33,19 +40,19 @@ keep_counting:
 add $1,%r8
 cmp %rax,%r8
 jle cont 
-mov %r8, %rax
-mov %r9, %rbx
+mov %r8 ,%rax
+mov %r9 ,%rbx
 
 
 cont:
-mov arr(,%rcx,4), %edx
+mov arr(,%rcx,4) ,%edx 
 add $1, %rcx
 jmp loop
-end_loop:
 
+
+end_loop:
 mov %rbx,begin
 mov %rax,len
-
 
 
 /*
