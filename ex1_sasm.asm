@@ -1,7 +1,11 @@
-.global _start
+.global main
+
+.section .data
+num: .quad 0xFFFFFFFFFFFFFFFF
+countBits:  .zero 4
 
 .section .text
-_start:
+main:
     xor %rax, %rax
     xor %dl, %dl
     mov num, %rax
@@ -19,5 +23,3 @@ _loop:
     
 _end:
     mov %dl, countBits
- 
-            
