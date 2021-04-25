@@ -2,6 +2,7 @@
 
 .section .text
 
+
 _found_src:
     movq -64(%rbp), %rsi
     movq %rsi, -48(%rbp)
@@ -69,7 +70,8 @@ _should_swap:
     jl _end
 
 _pick_strategy:
-    cmp %rdx, %rsi
+    subq $1, %rdx
+    cmp %rsi, %rdx
     jle _swap_strategy_3_pick
     movq head, %rax
     cmp %rax, -32(%rbp)

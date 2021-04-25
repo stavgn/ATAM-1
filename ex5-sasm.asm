@@ -1,5 +1,4 @@
 
-
 .global main 
 
 .section .data
@@ -11,7 +10,6 @@ BNode:  .quad 4
 ANode:  .quad 5
     .quad BNode
 .set NULL, 0
-
 
 .section .text
 main:
@@ -85,7 +83,8 @@ _should_swap:
     jl _end
 
 _pick_strategy:
-    cmp %rdx, %rsi
+    subq $1, %rdx
+    cmp %rsi, %rdx
     jle _swap_strategy_3_pick
     movq head, %rax
     cmp %rax, -32(%rbp)
