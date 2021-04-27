@@ -1,8 +1,8 @@
-.global main 
+.global _start
 .section .data
 arr: .int 1,2,3,4,5,6,7,8,9,0
 .section .text
-main:
+_start:
 #your code here
 movq $0,%rax # rax == sum = 0
 movq $0,%rcx # rcx == count = 0

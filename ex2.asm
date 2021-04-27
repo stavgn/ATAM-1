@@ -3,29 +3,21 @@
 _start:
 #your code here
 
-xor %ecx, %ecx # i=0
+xor %rcx, %rcx # i=0
 lea source, %rsi # rsi = &source
 lea destination, %rdi # rdi= &destination
 
-movl num,%edx # edx=num
 
-# if (num<=0) return;
-cmp $0,%edx
+movl num, %ecx
+cmp $0, %ecx
 jle end
 
 loop:
+dec %ecx 
+movb (%rsi,%rcx,1),%dl
+movb %dl, (%rdi, %rcx,1)
 
-
-# what i want to do is:
-# "movb source+i, destination+i"
-movb (%rsi),%bl
-movb %bl,(%rdi)
-
-inc %rsi
-inc %rdi
-inc %ecx
-# loop condition : while( i!=num )
-cmp %edx,%ecx
+cmp $0,%ecx
 jne loop
 
 end:
